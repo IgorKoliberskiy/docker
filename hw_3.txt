@@ -1,0 +1,46 @@
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker pull node:15.14                                                                 
+15.14: Pulling from library/node
+bfde2ec33fbc: Already exists
+787f5e2f1047: Already exists
+7b6173a10eb8: Already exists
+dc05be471d51: Already exists
+55fab5cadd3c: Already exists
+bd821d20ef8c: Already exists
+6041b69671c6: Already exists
+989c5d2d2313: Already exists
+4b57d41e8391: Already exists
+Digest: sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+Status: Downloaded newer image for node:15.14
+docker.io/library/node:15.14
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview node:15.14
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker run --name first_node -it -v "$(pwd)/data:/var/first/data" -d node:15.14        
+b2a991cfda410be068ab615673401d62736143015b68cb608904bcb062c6fefd
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker run --name second_node -it -v "$(pwd)/data:/var/second/data" -d node:15.14      
+b43830280115a087be1b946659619ca622b594aab2aa8f161c936e586977abf0
+docker exec first_node touch /var/first/data/text.txt
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker exec second_node dir /var/second/data
+test.txt  text.txt
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker exec second_node ls /var/second/data   
+test.txt
+text.txt
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker exec second_node cat /var/second/data/test.txt
+hello!
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker stop first_node second_node
+first_node
+second_node
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker rm first_node second_node  
+first_node
+second_node
+
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker rmi -f node:15.14
+Untagged: node:15.14
+Untagged: node@sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+Deleted: sha256:3d3f41722daf1a77c34d6eade6676bbffa2d6a2a21095de2ab0c427a5c942fc9

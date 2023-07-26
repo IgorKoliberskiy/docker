@@ -1,0 +1,86 @@
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker pull busybox
+Using default tag: latest
+Digest: sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Status: Image is up to date for busybox:latest
+docker.io/library/busybox:latest
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview busybox
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=62 time=9.737 ms
+64 bytes from 188.114.99.224: seq=1 ttl=62 time=8.895 ms
+64 bytes from 188.114.99.224: seq=2 ttl=62 time=8.774 ms
+64 bytes from 188.114.99.224: seq=3 ttl=62 time=8.671 ms
+64 bytes from 188.114.99.224: seq=4 ttl=62 time=8.642 ms
+64 bytes from 188.114.99.224: seq=5 ttl=62 time=8.279 ms
+64 bytes from 188.114.99.224: seq=6 ttl=62 time=8.210 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 8.210/8.744/9.737 ms
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+3b71f575d15f   busybox   "ping -c 7 netology.…"   45 seconds ago   Exited (0) 30 seconds ago             pinger
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=62 time=9.737 ms
+64 bytes from 188.114.99.224: seq=1 ttl=62 time=8.895 ms
+64 bytes from 188.114.99.224: seq=2 ttl=62 time=8.774 ms
+64 bytes from 188.114.99.224: seq=3 ttl=62 time=8.671 ms
+64 bytes from 188.114.99.224: seq=4 ttl=62 time=8.642 ms
+64 bytes from 188.114.99.224: seq=5 ttl=62 time=8.279 ms
+64 bytes from 188.114.99.224: seq=6 ttl=62 time=8.210 ms
+
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 8.210/8.744/9.737 ms
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker run --name pinger -it busybox ping -c 7 netology.ru
+docker: Error response from daemon: Conflict. The container name "/pinger" is already in use by container "3b71f575d15fcea8696511c2113678309015bb48a6b01a66865c1ce507c8c750". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                          PORTS     NAMES
+3b71f575d15f   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) About a minute ago             pinger
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=62 time=9.737 ms
+64 bytes from 188.114.99.224: seq=2 ttl=62 time=8.774 ms
+64 bytes from 188.114.99.224: seq=4 ttl=62 time=8.642 ms
+64 bytes from 188.114.99.224: seq=5 ttl=62 time=8.279 ms
+64 bytes from 188.114.99.224: seq=6 ttl=62 time=8.210 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 8.210/8.744/9.737 ms
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker logs -f -t pinger
+2023-07-25T19:21:02.627666519Z PING netology.ru (188.114.99.224): 56 data bytes
+2023-07-25T19:21:02.637525867Z 64 bytes from 188.114.99.224: seq=0 ttl=62 time=9.737 ms
+2023-07-25T19:21:03.636893152Z 64 bytes from 188.114.99.224: seq=1 ttl=62 time=8.895 ms
+2023-07-25T19:21:04.636891279Z 64 bytes from 188.114.99.224: seq=2 ttl=62 time=8.774 ms
+2023-07-25T19:21:05.636990633Z 64 bytes from 188.114.99.224: seq=3 ttl=62 time=8.671 ms
+2023-07-25T19:21:06.636921694Z 64 bytes from 188.114.99.224: seq=4 ttl=62 time=8.642 ms
+2023-07-25T19:21:07.636867077Z 64 bytes from 188.114.99.224: seq=5 ttl=62 time=8.279 ms
+2023-07-25T19:21:08.636895673Z 64 bytes from 188.114.99.224: seq=6 ttl=62 time=8.210 ms
+2023-07-25T19:21:08.636927681Z
+2023-07-25T19:21:08.636930600Z --- netology.ru ping statistics ---
+2023-07-25T19:21:08.636933038Z 7 packets transmitted, 7 packets received, 0% packet loss
+2023-07-25T19:21:08.636944530Z round-trip min/avg/max = 8.210/8.744/9.737 ms
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker logs -f pinger   
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=62 time=9.737 ms
+64 bytes from 188.114.99.224: seq=1 ttl=62 time=8.895 ms
+64 bytes from 188.114.99.224: seq=2 ttl=62 time=8.774 ms
+64 bytes from 188.114.99.224: seq=3 ttl=62 time=8.671 ms
+64 bytes from 188.114.99.224: seq=4 ttl=62 time=8.642 ms
+64 bytes from 188.114.99.224: seq=5 ttl=62 time=8.279 ms
+64 bytes from 188.114.99.224: seq=6 ttl=62 time=8.210 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 8.210/8.744/9.737 ms
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker rm pinger     
+pinger
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Deleted: sha256:a416a98b71e224a31ee99cff8e16063554498227d2b696152a9c3e0aa65e5824
+Deleted: sha256:3d24ee258efc3bfe4066a1a9fb83febf6dc0b1548dfe896161533668281c9f4f
+PS C:\Users\kolib\OneDrive\Рабочий стол\Project\Node.js\docker> 
